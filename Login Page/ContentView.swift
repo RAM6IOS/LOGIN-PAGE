@@ -49,39 +49,75 @@ struct LoginView: View {
                     .fontWeight(.heavy)
             }
             .padding(.top)
-            
+            Spacer(minLength: -20)
             
             VStack(spacing:20){
+                CustomTexField(Images: "person", placeholde: "email", username: "")
+                    .background(Color.gray)
+                    .padding()
+                CustomTexField(Images: "lock", placeholde: "password", username: "")
+                    .background(Color.gray)
+                    .padding()
                 
-            }
+                Button("Log In") {
+                    print("Button tapped!")
+                }
+                .frame(width: 300, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .background(Color.blue)
+                .foregroundColor(.black)
+                .cornerRadius(10)
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                
+                HStack{
+                
+                    Text("Don’t have an account?")
+                    Link("Sin up", destination: URL(string:"#")!)
+                        
+                    
+                }
+             
+             
+        }
             
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }
-        .background(LinearGradient(gradient: .init(colors:[Color("red"),Color("white")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all,edges: .all))
+        .background(LinearGradient(gradient: .init(colors:[Color("top"),Color("bottom")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all,edges: .all))
     }
-}
 
+}
 
 struct CustomTexField: View {
     var Images :String
     var placeholde :String
-    @Binding var text :String
+    @State var username: String = ""
     var body: some View {
-        ZStack{
+        VStack(){
+        HStack(spacing:0){
             Image(systemName: Images)
                 .font(.system(size: 24))
-                .foregroundColor(Color("bottom"))
+                .foregroundColor(Color.gray)
                 .frame(width: 60, height: 60)
                 .background(Color.white)
                 .clipShape(Circle())
-            TextField(placeholde ,text:$text)
+            TextField(placeholde, text: $username )
                 .padding(.horizontal)
                 .padding(.leading,65)
                 .frame( height: 60)
-                .background(Color.white.opacity(0.2))
-                .clipShape(Circle())
+                .foregroundColor(.black)
+                .cornerRadius(5)
+                
+                
+                
         }
         .padding(.horizontal)
+            
+           
+        }
        
     }
+}
+
+class ModelData : ObservableObject{
+    @Published var email = ""
+    @Published var password = ""
 }
