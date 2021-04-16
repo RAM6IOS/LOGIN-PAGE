@@ -9,8 +9,41 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        NavigationView{
+            VStack{
        LoginView()
+               
+                HStack{
+                    
+                    Text("Don’t have an account?")
+                    NavigationLink(
+                         destination:
+                           SingUp()
+                        
+                       
+                            
+                            ,
+                        label: {
+                            Text("Sing up")
+                                .bold()
+                        })
+                  
+                       
+                        
+                  
+                    
+                    
+                
+                }
+               
+                Spacer(minLength:200)
+             
+            }
+          
+        }
+       
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -22,6 +55,7 @@ struct ContentView_Previews: PreviewProvider {
 struct LoginView: View {
     //@StatObject var modle = ModelData()
     var body: some View {
+       
         VStack{
           
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
@@ -49,42 +83,41 @@ struct LoginView: View {
                     .fontWeight(.heavy)
             }
             .padding(.top)
-            Spacer(minLength: -20)
             
-            VStack(spacing:20){
-                CustomTexField(Images: "person", placeholde: "email", username: "")
-                    .background(Color.gray)
-                    .padding()
-                CustomTexField(Images: "lock", placeholde: "password", username: "")
-                    .background(Color.gray)
-                    .padding()
+            
+            
                 
-                Button("Log In") {
-                    print("Button tapped!")
-                }
-                .frame(width: 300, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .background(Color.blue)
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 
-                HStack{
-                
-                    Text("Don’t have an account?")
-                    Link("Sin up", destination: URL(string:"#")!)
-                        
+                VStack(spacing:20){
+                    CustomTexField(Images: "person", placeholde: "email", username: "")
+                        .background(Color.gray)
+                        .padding()
+                        .cornerRadius(10)
+                    CustomTexField(Images: "lock", placeholde: "password", username: "")
+                        .background(Color.gray)
+                        .padding()
+                    
+                    Button("Log In") {
+                        print("Button tapped!")
+                    }
+                    .frame(width: 300, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .background(Color.blue)
+                    .foregroundColor(.black)
+                    .cornerRadius(10)
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    
+                   
+                    
                     
                 }
-             
-             
-        }
             
             Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
         }
         .background(LinearGradient(gradient: .init(colors:[Color("top"),Color("bottom")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all,edges: .all))
+        }
     }
 
-}
+
 
 struct CustomTexField: View {
     var Images :String
@@ -105,6 +138,7 @@ struct CustomTexField: View {
                 .frame( height: 60)
                 .foregroundColor(.black)
                 .cornerRadius(5)
+               
                 
                 
                 
@@ -116,6 +150,80 @@ struct CustomTexField: View {
        
     }
 }
+
+
+struct SingUp: View {
+    //@StatObject var modle = ModelData()
+    var body: some View {
+       
+        VStack{
+          
+            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+            
+            Image(systemName: "leaf.fill")
+                .padding(.horizontal)
+                .padding(.vertical,20)
+                .background(Color.white.opacity(0.2))
+                .cornerRadius(30)
+                .font(.system(size: 70))
+            
+            
+            VStack(spacing:4){
+                HStack(spacing:0){
+                    Text("Dething")
+                        .font(.system(size: 35,weight: .heavy))
+                        .foregroundColor(.blue)
+                    Text("Matshe")
+                        .font(.system(size: 35,weight: .heavy))
+                        .foregroundColor(.black)
+                }
+                
+                Text("let Choose your Matsh")
+                    .foregroundColor(Color.black.opacity(0.3))
+                    .fontWeight(.heavy)
+            }
+            .padding(.top)
+            
+            
+            
+                
+                
+                VStack(spacing:20){
+                    CustomTexField(Images: "person", placeholde: "Name", username: "")
+                        .background(Color.gray)
+                        .padding()
+                        .cornerRadius(10)
+                    CustomTexField(Images: "person", placeholde: "email", username: "")
+                        .background(Color.gray)
+                        .padding()
+                        .cornerRadius(10)
+                    CustomTexField(Images: "lock", placeholde: "password", username: "")
+                        .background(Color.gray)
+                        .padding()
+                    
+                    Button("Sing Up") {
+                        print("Button tapped!")
+                    }
+                    .frame(width: 300, height: 60, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .background(Color.blue)
+                    .foregroundColor(.black)
+                    .cornerRadius(10)
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    
+                   
+                    
+                    
+                }
+            
+            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
+        }
+        .background(LinearGradient(gradient: .init(colors:[Color("top"),Color("bottom")]), startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all,edges: .all))
+        Spacer(minLength:200)
+        }
+    }
+
+
+
 
 class ModelData : ObservableObject{
     @Published var email = ""
